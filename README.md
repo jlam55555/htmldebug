@@ -30,6 +30,7 @@ hd("hello", "world!");
 >  hello
 >  world!
 */
+```
 
 ### Buttons
 - "Clear"
