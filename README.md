@@ -17,8 +17,9 @@ hd("These two functions are identical.");
 ```
 
 Output:
-> &gt;  These two functions are identical.
-> &gt;  These two functions are identical.
+> &gt;&nbsp;&nbsp;These two functions are identical.
+>
+> &gt;&nbsp;&nbsp;These two functions are identical.
 
 Multiple values can be sent to `console.log()`, and these will be printed on consecutive lines:
 
@@ -27,8 +28,8 @@ hd("hello", "world!");
 ```
 
 Output:
-> >  hello
-> >  world!
+> &gt;&nbsp;&nbsp;hello
+> &gt;&nbsp;&nbsp;world!
 
 
 ### Buttons
