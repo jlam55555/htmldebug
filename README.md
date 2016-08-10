@@ -29,7 +29,7 @@ hd("hello", "world!");
 
 Output:
 > &gt;&nbsp;&nbsp;hello
-> &gt;&nbsp;&nbsp;world!
+&gt;&nbsp;&nbsp;world!
 
 
 ### Buttons
