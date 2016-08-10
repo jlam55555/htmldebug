@@ -110,6 +110,7 @@
       elemConsole.select();
       document.execCommand("copy");
       elemConsole.value = oldValue + "\n\n$  htmldebug console copied";
+      elemConsole.scrollTop = elemConsole.scrollHeight;
     });
     
     // input JS functionality
