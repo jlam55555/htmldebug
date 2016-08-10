@@ -14,6 +14,7 @@ Just include the script file (before your other scripts)! This will inject the H
 ```
 console.log("These two functions are identical.");
 hd("These two functions are identical.");
+```
 
 Output:
 > >  These two functions are identical.
