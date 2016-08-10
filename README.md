@@ -15,22 +15,20 @@ Just include the script file (before your other scripts)! This will inject the H
 console.log("These two functions are identical.");
 hd("These two functions are identical.");
 
-/* Output:
->  These two functions are identical.
->  These two functions are identical.
-*/
-```
+Output:
+> >  These two functions are identical.
+> >  These two functions are identical.
 
 Multiple values can be sent to `console.log()`, and these will be printed on consecutive lines:
 
 ```
 hd("hello", "world!");
-
-/* Output:
->  hello
->  world!
-*/
 ```
+
+Output:
+> >  hello
+> >  world!
+
 
 ### Buttons
 - "Clear"
@@ -42,7 +40,7 @@ hd("hello", "world!");
 ### Console
 Anything inputted to the `JS >` prompt will be run with JavaScript. You can run any normal JavaScript on your site. This only supports single-line statements, however.
 
-You can press <kbd>Shift+C</kbd> as a shortcut to focus on the console line, and <kbd>Esc</kbd> will exit it.
+You can press <kbd>Shift</kbd>+<kbd>C</kbd> as a shortcut to focus on the console line, and <kbd>Esc</kbd> will exit it.
 
 ### Tutorial
 Open `tutorial.html` in your browser to see a usage example.
