@@ -9,9 +9,10 @@
       .htmldebug {
         box-sizing: border-box;
         margin: 0;
-        background-color: white;
         outline: none;
         border: none;
+        font-family: courier new;
+        font-size: 12px;
       }
       #htmldebug-window {
         height: 300px;
@@ -20,6 +21,8 @@
         position: fixed;
         top: 25px;
         right: 25px;
+        z-index: 1000000000000;
+        border-radius: 5px;
       }
       #htmldebug-console {
         height: calc(100% - 60px);
@@ -27,6 +30,28 @@
         display: block;
         resize: none;
         line-height: 1;
+        font-weight: bold;
+        background-color: #1d1f21;
+        color: #c5c8c6;
+        padding: 10px;
+        overflow-y: hidden;
+      }
+      #htmldebug-console:hover {
+        overflow-y: scroll;
+      }
+      #htmldebug-console::-webkit-scrollbar {
+        width: 10px;
+        padding-right: 5px;
+      }
+      #htmldebug-console::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+      #htmldebug-console::-webkit-scrollbar-thumb {
+        background-color: #373b41;
+        border-radius: 10px;
+      }
+      #htmldebug-console::-webkit-scrollbar-thumb:active {
+        background-color: #707880;
       }
       #htmldebug-prompt, #htmldebug-js {
         float: left;
@@ -36,21 +61,28 @@
         border-top: 1px solid black;
       }
       #htmldebug-prompt {
-        width: 30px;
+        width: 50px;
+        padding: 0 10px;
       }
       #htmldebug-js {
-        width: calc(100% - 30px);
+        width: calc(100% - 50px);
       }
       button.htmldebug {
         height: 30px;
         width: 50%;
         float: left;
         cursor: pointer;
-        background-color: #ccccff;
+        color: #1d1f21;
+        background-color: #c5c8c6;
         border-top: 1px solid black;
+        font-weight: bold;
+      }
+      #htmldebug-clear {
+        border-bottom-left-radius: 5px;
       }
       #htmldebug-copy {
         border-left: 1px solid black;
+        border-bottom-right-radius: 5px;
       }
     </style>`;
 
@@ -79,6 +111,8 @@
   
   // create console.log() alias hd()
   hd = console.log;
+
+  // error logs as well
   window.onerror = function(error, url, line) {
     if(line == 0)
       error = error.substring(0, error.length-1) + " in virtual console.";
