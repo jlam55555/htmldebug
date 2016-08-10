@@ -1,7 +1,7 @@
 ;(function() {
 
   // global variables
-  var css, html, oldLog, loadQueue = "", elemConsole;
+  var css, html, oldLog, loadQueue = "", lock = [], elemConsole, elemJs, keymap, keymapper;
 
   // CSS code for styles
   css =
@@ -98,9 +98,21 @@
 
   // hack the console.log() function
   oldLog = console.log;
-  console.log = function(msg, err, csl) {
-    oldLog.apply(console, [msg]);
-    msg="\n\n"+(err?"!":csl?"=":">")+"  "+msg+(typeof msg=="object"?" "+JSON.stringify(msg):"");
+  console.log = function() {
+    var opt = 0;
+    var args = [];
+    for(arg of arguments)
+      args.push(arg);
+    if(args.indexOf(lock) >= 0) {
+      opt = args.pop();
+      args.pop();
+    }
+    oldLog.apply(console, args);
+    var msg = "\n";
+    for(arg of args)
+      msg += "\n" + 
+        (opt == 1 ? "!" : opt==2 ? "=" : ">" ) +
+        "  " + arg + (typeof arg == "object" ? " " + JSON.stringify(arg) : "");
     if(!elemConsole)
       loadQueue += msg;
     else {
@@ -116,7 +128,7 @@
   window.onerror = function(error, url, line) {
     if(line == 0)
       error = error.substring(0, error.length-1) + " in virtual console.";
-    console.log("Error on line " + line + ": " + error, true);
+    console.log("Error on line " + line + ": " + error, lock, 1);
   };
 
   // load into window onload
@@ -125,8 +137,9 @@
     // add CSS, HTML
     document.body.innerHTML += css + html;
 
-    // set elemConsole
+    // set elemConsole and elemJs
     elemConsole = document.getElementById("htmldebug-console");
+    elemJs = document.getElementById("htmldebug-js");
 
     // if loaded console.log() before load, write them in
     if(loadQueue)
@@ -148,11 +161,30 @@
     });
     
     // input JS functionality
-    document.getElementById("htmldebug-js").addEventListener("keyup", function(event) {
+    elemJs.addEventListener("keyup", function(event) {
       if(event.which != 13)
         return;
-      hd(eval(this.value), false, true);
+      hd(eval(this.value), lock, 2);
       this.value = "";
     });
+
+    // shortcuts
+    keymap = {};
+    keymapper = function(event) {
+      keymap[event.which] = event.type=="keydown" ? true : false;
+      // shift-c for console
+      if(keymap[16] && keymap[67]) {
+        elemJs.focus();
+        setTimeout(function() {
+          elemJs.value = elemJs.value.substring(0, elemJs.value.length-1);
+        }, 0);
+      }
+      // escape to leave console
+      if(keymap[27])
+        elemJs.blur();
+    };
+    document.addEventListener("keydown", keymapper);
+    document.addEventListener("keyup", keymapper);
+
   };
 })();
