@@ -15,11 +15,14 @@ hd("These two functions are identical.");
 ```
 
 ### Buttons
-#### "Clear"
-Use this to clear the console.
+- "Clear"
+    Use this to clear the console.
 
-#### "Copy"
-Use this to copy the console to clipboard. Note that extra `>  ` and `$  ` prompts will be omitted, as well as extra newlines. It will simply be raw output (but still with the htmldebug prompts).
+- "Copy"
+    Use this to copy the console to clipboard. Note that extra `>  ` and `$  ` prompts will be omitted, as well as extra newlines. It will simply be raw output (but still with the htmldebug prompts).
+
+### Tutorial
+Open `tutorial.html` in your browser to see a usage example.
 
 ### Inspiration
 On slow computers, opening the Developer Tools dialog box is often slow and cumbersome. I decided to write a very light, HTML and VanillaJS-based application to view the console output from the screen.
